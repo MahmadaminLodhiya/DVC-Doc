@@ -5,14 +5,7 @@ This guide explains how to use **Data Version Control (DVC)** to manage datasets
 
 ---
 
-## 1. Prerequisites
-Ensure you have the following installed:
-
-- Python (>=3.7)
-- Git
-- DVC
-- YOLO (e.g., Ultralytics YOLOv8)
-
+## 1. Installation
 To install DVC:
 ```bash
 pip install dvc
@@ -20,8 +13,8 @@ pip install dvc
 
 ---
 
-## 2. Install and Initialize DVC
-Run the following inside your **YOLO project folder**:
+## 2. Initialize DVC
+Run the following inside your **project folder**:
 ```bash
 git init
 dvc init
@@ -31,19 +24,19 @@ git commit -m "Initialize DVC for local dataset tracking"
 ---
 
 ## 3. Add Your Dataset to DVC
-Assume your dataset is stored in `datasets/my-yolo-dataset/`.
+Assume your dataset is stored in `datasets/my-dataset/`.
 
 Run:
 ```bash
-dvc add datasets/my-yolo-dataset
+dvc add datasets/my-dataset
 ```
 This:
 - Moves the dataset to **DVC cache** (`.dvc/cache`).
-- Creates a **metadata file**: `datasets/my-yolo-dataset.dvc`.
+- Creates a **metadata file**: `datasets/my-dataset.dvc`.
 
 Now, commit this change to Git:
 ```bash
-git add datasets/my-yolo-dataset.dvc .gitignore
+git add datasets/my-dataset.dvc .gitignore
 git commit -m "Track dataset with DVC"
 ```
 
@@ -52,8 +45,8 @@ git commit -m "Track dataset with DVC"
 ## 4. Track Dataset Changes Locally
 Each time you update the dataset (e.g., adding new images), run:
 ```bash
-dvc add datasets/my-yolo-dataset
-git add datasets/my-yolo-dataset.dvc
+dvc add datasets/my-dataset
+git add datasets/my-dataset.dvc
 git commit -m "Updated dataset version"
 ```
 This updates the dataset version **without duplication**.
@@ -80,7 +73,7 @@ This restores the dataset to the version stored in that commit.
 Each time you train YOLO, ensure you have the correct dataset:
 ```bash
 dvc checkout  # Ensure dataset is in place
-python train.py --data datasets/my-yolo-dataset --epochs 50
+python train.py --data datasets/my-dataset --epochs 50
 ```
 
 After training, **version the trained model**:
