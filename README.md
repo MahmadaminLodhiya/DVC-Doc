@@ -59,7 +59,13 @@ dvc diff HEAD^  # Compare current and previous dataset versions
 
 ---
 
-## 5. Restore Previous Versions
+## 5. Check Dataset Versions
+To show all the versions
+```base
+git log --oneline
+```
+
+## 6. Restore Previous Versions
 To switch to an older dataset version:
 ```bash
 git checkout <commit-hash>
@@ -69,7 +75,7 @@ This restores the dataset to the version stored in that commit.
 
 ---
 
-## 6. Train YOLO with Versioned Data
+## 7. Train YOLO with Versioned Data
 Each time you train YOLO, ensure you have the correct dataset:
 ```bash
 dvc checkout  # Ensure dataset is in place
