@@ -89,39 +89,6 @@ This restores the dataset to the version stored in that commit.
 
 ---
 
-## 7. Train YOLO with Versioned Data
-Each time you train YOLO, ensure you have the correct dataset:
-```bash
-dvc checkout  # Ensure dataset is in place
-python train.py --data datasets/my-dataset --epochs 50
-```
-
-After training, **version the trained model**:
-```bash
-dvc add runs/train/exp/weights/best.pt  # Track YOLO model
-git add runs/train/exp/weights/best.pt.dvc
-git commit -m "Versioned YOLO trained model"
-```
-Now you can rollback to older **trained model versions** anytime.
-
----
-
-## 7. Use DVC Pipeline (Optional)
-To automate dataset processing and model training:
-```bash
-dvc run -n train_yolo \
-    -d datasets/my-yolo-dataset \
-    -d train.py \
-    -o runs/train/exp/weights/best.pt \
-    "python train.py --data datasets/my-yolo-dataset --epochs 50"
-```
-Now, you can run:
-```bash
-dvc repro train_yolo  # Runs only if dataset changes
-```
-
----
-
 
 
 
