@@ -60,9 +60,23 @@ dvc diff HEAD^  # Compare current and previous dataset versions
 ---
 
 ## 5. Check Dataset Versions
-To show all the versions
-```base
+To show all the dataset versions stored in Git:
+```bash
 git log --oneline
+```
+Each commit represents a different version of the dataset. To see a detailed history with commit messages and timestamps:
+```bash
+git log --pretty=format:"%h - %an, %ar : %s"
+```
+If you want to see differences between specific versions:
+```bash
+dvc diff <commit-hash-1> <commit-hash-2>
+```
+This helps in identifying changes made between dataset versions.
+
+To list all the available dataset versions tracked by DVC:
+```bash
+dvc list . --dvc-only
 ```
 
 ## 6. Restore Previous Versions
@@ -107,6 +121,8 @@ dvc repro train_yolo  # Runs only if dataset changes
 ```
 
 ---
+
+
 
 
 
